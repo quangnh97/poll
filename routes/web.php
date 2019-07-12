@@ -17,4 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/home/{username}', 'UsersController@index')->name('user.show');
+Route::redirect('/home', '/');
+
+Route::resource('surveys', 'SurveysController');

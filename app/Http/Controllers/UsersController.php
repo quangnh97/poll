@@ -9,8 +9,8 @@ class UsersController extends Controller
     public function index($username)
     {
         $user = \App\User::where('username', $username)->firstOrFail();
-        $surveys = $user->survey->chunk(1);
-        return view('home', [
+        $surveys = $user->surveys->chunk(1);
+        return view('users.index', [
             'user' => $user,
             'surveys' => $surveys
         ]);

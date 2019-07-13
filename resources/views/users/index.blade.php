@@ -9,7 +9,7 @@
         <div class="col-9 pt-2">
             <h1>POLLING - give us your opinion</h1>
             <div class="d-flex">
-                <div class="pr-3"><a href="#"><strong>Create new survey</strong></a></div>
+                <div class="pr-3"><a href="/surveys/create"><strong>Create new survey</strong></a></div>
                 <div><a href="#"><strong>See more...</strong></a></div>
             </div>
             <div class="your-surveys">

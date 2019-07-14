@@ -21,3 +21,4 @@ Route::get('/home/{username}', 'UsersController@index')->name('user.show');
 Route::redirect('/home', '/');
 
 Route::resource('surveys', 'SurveysController');
+Route::resource('questions', 'QuestionsController');

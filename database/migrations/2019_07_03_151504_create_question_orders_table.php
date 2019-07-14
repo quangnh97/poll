@@ -17,6 +17,7 @@ class CreateQuestionOrdersTable extends Migration
             $table->unsignedBigInteger('survey_id');
             $table->unsignedBigInteger('question_id');
             $table->integerIncrements('order');
+            $table->timestamps();
 
             $table->foreign('question_id')->references('id')->on('questions');
             $table->foreign('survey_id')->references('id')->on('surveys');

@@ -12,4 +12,9 @@ class Survey extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, 'question_orders', 'survey_id', 'question_id');
+    }
 }

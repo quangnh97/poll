@@ -44,19 +44,20 @@
         </form>
     </div>
 
-    <div class="list-question mt-5 d-flex">
+    <div class="list-question mt-5 d-flex row">
         @foreach ($survey->questions as $question)
-            <div class="a-question mr-5 p-4 alert alert-success" role="alert" style="border: 1px solid; width: 200px; height: 200px;">
+            <div class="col-3 a-question mr-5 p-4 alert alert-success" role="alert" style="border: 1px solid;">
                 <p class="alert-heading">Content: {{ $question->content }}</p>
                 <p class="mb-0">Type: {{ $question->type }}</p>
+                <div class="mt-2">
+                    <form action="/questions/{{ $question->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-outline-danger btn-block">X</button>
+                    </form>
+                </div>
             </div>
-            <div>
-                <form action="/questions/{{ $question }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger" style="position:relative; top: 151px; left: -160px;">X</button>
-                </form>
-            </div>
+            
         @endforeach
         
         <a title="Create new question" class="card-link" href="/questions/create?survey={{ $survey->id }}">

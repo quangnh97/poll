@@ -11,7 +11,7 @@
 ###### XAMPP: https://www.apachefriends.org/download.html 
 ###### Git: https://git-scm.com/
 ###### Composer: https://getcomposer.org/download/ 
-###### Laravel: mở cmd và chạy lệnh: composer global require laravel/installer 
+###### Laravel: mở cmd và chạy lệnh: ``` composer global require laravel/installer ```
 
 ## B1: tạo project Laravel, mở git bash tại thư mục muốn tạo và chạy lệnh:
 ```

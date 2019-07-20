@@ -17,4 +17,9 @@ class Survey extends Model
     {
         return $this->belongsToMany(Question::class, 'question_orders', 'survey_id', 'question_id');
     }
+
+    public function surveyresponses()
+    {
+        return $this->hasMany(SurveyResponse::class);
+    }
 }

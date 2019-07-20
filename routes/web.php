@@ -14,11 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::redirect('/home', '/');
 Auth::routes();
 
 Route::get('/home/{username}', 'UsersController@index')->name('user.show');
-Route::redirect('/home', '/');
 
+
+Route::get('/surveys/another', 'SurveysController@another');
+Route::get('surveys/{survey}/start', 'SurveysController@start');
+Route::get('surveys/{survey}/statistical', 'SurveysController@statistical');
 Route::resource('surveys', 'SurveysController');
+
 Route::resource('questions', 'QuestionsController');
+
+Route::resource('responses', 'ResponsesController');

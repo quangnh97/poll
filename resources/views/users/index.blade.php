@@ -10,7 +10,7 @@
             <h1>POLLING - give us your opinion</h1>
             <div class="d-flex">
                 <div class="pr-3">
-                    <a href="/surveys/create"><strong>Create new survey</strong></a> | <a href="#"><strong>Another surveys</strong></a>
+                    <a href="/surveys/create"><strong>Create new survey</strong></a> | <a href="/surveys/another"><strong>Another surveys</strong></a>
                 </div>
                 
             </div>
@@ -25,7 +25,7 @@
                             <p class="created-at">Created at: {{$survey->first()->created_at}}</p>
                             <p class="name-survey">Title: {{$survey->first()->name}}</p>
                             <p class="description-survey">Description: {{$survey->first()->description}}</p>
-                            <a href="/surveys/{{$survey->first()->id}}">See more...</a>
+                            <a href="/surveys/{{$survey->first()->id}}">Setting</a> | <a href="/surveys/{{ $survey->first()->id }}/statistical">Statistical</a>
                             <div style="position: relative;">
                                 <form action="/surveys/{{$survey->first()->id}}" method="post">
                                     @csrf

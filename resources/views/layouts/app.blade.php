@@ -23,7 +23,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body {
-            background-color: #fcfdff;
+            background-color: #ecf0f1;
             color: #192a56;
         }
     </style>

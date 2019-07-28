@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="row">
-                        <button class="btn btn-outline-danger btn-block">Change this survey</button>
+                        <button class="btn btn-outline-danger btn-block col-3">Change this survey</button>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,20 @@
         @foreach ($survey->questions as $question)
             <div class="col-3 a-question mr-5 p-4 alert alert-success" role="alert" style="border: 1px solid;">
                 <p class="alert-heading">Content: {{ $question->content }}</p>
-                <p class="mb-0">Type: {{ $question->type }}</p>
+                <p class="mb-0">Type: <?php if($question->type == 1 ) echo "True-False";  
+                    else if($question->type == 2) echo "Multichoice";
+                        else echo "Comment"; ?>
+               </p>
+                @if($question->type == 2)
+
+                    <form action="/questions/{{ $question->id }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input  name="content" type="hidden" value="{{ $question->content }}">
+                        <input  name="survey_id" type="hidden" value="{{ $survey->id }}">
+                        <button class="btn btn-outline-danger btn-block">Create options</button>
+                    </form>
+                @endif 
                 <div class="mt-2">
                     <form action="/questions/{{ $question->id }}" method="post">
                         @csrf
@@ -59,11 +72,13 @@
             </div>
             
         @endforeach
-        
         <a title="Create new question" class="card-link" href="/questions/create?survey={{ $survey->id }}">
             <img style="height: 100px; position: relative;top: 40px;" src="https://media.istockphoto.com/vectors/plus-add-flat-icon-cross-round-simple-button-circular-vector-sign-vector-id678479260?b=1&k=6&m=678479260&s=170x170&h=eo8IpS4NB_mOtTGvUoGo654RdKCW3C8N_BPif0KX2YQ=" alt="Add new question">
         </a>
 
+    </div>
+    <div>
+        <button class="btn btn-outline-danger btn-block col-3" style="margin-left: 400px;">Done!</button>
     </div>
 </div>
 @endsection

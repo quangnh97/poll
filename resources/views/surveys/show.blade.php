@@ -38,6 +38,7 @@
 
                     <div class="row">
                         <button class="btn btn-outline-danger btn-block col-3">Change this survey</button>
+                        
                     </div>
                 </div>
             </div>
@@ -77,8 +78,11 @@
         </a>
 
     </div>
-    <div>
-        <button class="btn btn-outline-danger btn-block col-3" style="margin-left: 400px;">Done!</button>
+    <div>   
+        <form action="/surveys/{{ $survey->id }}/detail" method="get">
+            <button class="btn btn-outline-danger btn-block col-3" style="margin-left: 400px;">Done!</button>
+        </form>
     </div>
 </div>
+
 @endsection

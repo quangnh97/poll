@@ -25,7 +25,9 @@
                             <p class="created-at">Created at: {{$survey->first()->created_at}}</p>
                             <p class="name-survey">Title: {{$survey->first()->name}}</p>
                             <p class="description-survey">Description: {{$survey->first()->description}}</p>
-                            <a href="/surveys/{{$survey->first()->id}}">Setting</a> | <a href="/surveys/{{ $survey->first()->id }}/statistical">Statistical</a>
+                            <a href="/surveys/{{$survey->first()->id}}">Setting</a> 
+                            | <a href="/surveys/{{ $survey->first()->id }}/statistical">Statistical</a> 
+                            | <a href="/surveys/{{ $survey->first()->id }}/detail">Detail</a>
                             <div style="position: relative;">
                                 <form action="/surveys/{{$survey->first()->id}}" method="post">
                                     @csrf

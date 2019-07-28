@@ -69,16 +69,16 @@ class QuestionsController extends Controller
        public function show(Request $request,$id)
     {   
         \App\Option::create(
-            ['content' => $request->a,'question_id' => $id]  
+            ['content_op' => $request->a,'question_id' => $id]  
         );
         \App\Option::create(
-            ['content' => $request->b,'question_id' => $id]  
+            ['content_op' => $request->b,'question_id' => $id]  
         );
         \App\Option::create(
-            ['content' => $request->c,'question_id' => $id] 
+            ['content_op' => $request->c,'question_id' => $id] 
         );
         \App\Option::create(
-            ['content' => $request->d,'question_id' => $id] 
+            ['content_op' => $request->d,'question_id' => $id] 
         );
         $survey_id = \App\QuestionOrder::where('question_id', $id)->first()->survey_id;
         $survey = \App\Survey::find($survey_id);

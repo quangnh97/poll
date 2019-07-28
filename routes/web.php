@@ -23,6 +23,7 @@ Route::get('/home/{username}', 'UsersController@index')->name('user.show');
 Route::get('/surveys/another', 'SurveysController@another');
 Route::get('surveys/{survey}/start', 'SurveysController@start');
 Route::get('surveys/{survey}/statistical', 'SurveysController@statistical');
+Route::get('surveys/{survey}/detail', 'SurveysController@detail');
 Route::resource('surveys', 'SurveysController');
 
 Route::resource('questions', 'QuestionsController');

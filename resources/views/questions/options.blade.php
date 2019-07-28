@@ -8,7 +8,7 @@
 </style>
 <div class="container">
     <form action="/questions/{{$question_id}}" method="get">
-        
+    @csrf
         <div class="row">
             <div class="col-8 offset-2">
                 <div class="row">
@@ -26,20 +26,56 @@
                 <div class="form-group row">
                 <table id="myTable" width="100%">
                         <tr>
-                            <td>A :</td>
-                            <td> <input name="a" type="text"> </td>
+                            <td> Option A:</td>
+                            <td> 
+                                <div>
+                                    <input name="a" id="a" type="text" class=" @error('a') is-invalid @enderror" required autocomplete="a"> 
+                                    @error('a')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror   
+                                </div> 
+                            </td>
                         </tr>
                         <tr>
-                            <td>B :</td>
-                            <td> <input name="b" type="text"> </td>
+                            <td>Option B:</td>
+                            <td> 
+                                <div>
+                                    <input name="b" id="b" type="text" class=" @error('b') is-invalid @enderror" required autocomplete="b"> 
+                                    @error('b')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror   
+                                </div> 
+                            </td>
                         </tr>
                         <tr>
-                            <td>C :</td>
-                            <td> <input name="c" type="text"> </td>
+                            <td>Option C:</td>
+                            <td> 
+                                <div>
+                                    <input name="c" id="c" type="text" class=" @error('c') is-invalid @enderror" required autocomplete="c"> 
+                                    @error('c')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror   
+                                </div> 
+                            </td>
                         </tr>
                         <tr>
-                            <td>D :</td>
-                            <td> <input  name="d" type="text"> </td>
+                            <td></td>
+                            <td> 
+                                <div>
+                                    <input name="d" id="d" type="text" class=" @error('d') is-invalid @enderror" required autocomplete="d"> 
+                                    @error('d')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror   
+                                </div> 
+                            </td>
                         </tr>
                         
                 </table>
@@ -59,6 +95,6 @@
       function quay_lai_trang_truoc(){
           history.back();
       }
-  </script>
+</script>
 
 @endsection

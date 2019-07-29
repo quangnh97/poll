@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class SurveysController extends Controller
 {
@@ -42,6 +43,7 @@ class SurveysController extends Controller
     
     public function update($id)
     {
+
         if(auth()->user() == null) {
             return \redirect('/');
         }
@@ -49,7 +51,7 @@ class SurveysController extends Controller
             'name' => ['required', 'unique:surveys', 'max:255'],
             'description' => ['required', 'max:1000']
         ]);
-        auth()->user()->surveys()->update($data);
+        auth()->user()->surveys()->where('id', $id)->update($data);
         return \redirect('/home/' . \auth()->user()->username);
     }
 
@@ -111,5 +113,30 @@ class SurveysController extends Controller
         
         $data = \json_encode($data);
         return $data;
+    }
+
+    public function detail($id)
+    {
+        $survey = \App\Survey::find($id);
+        $surveyresponse = \App\SurveyResponse::where('survey_id', $id)->get();
+       // $question = \App\Question::where('survey_id',$id)->get();
+        $question = DB::table('questions')
+        ->join('question_orders', 'questions.id', '=', 'question_orders.question_id')
+        ->where('question_orders.survey_id',$id)
+        ->get();
+
+        $questionMul =
+        DB::table('questions')
+        ->join('question_orders', 'questions.id', '=', 'question_orders.question_id')
+        ->join('options', 'questions.id', '=', 'options.question_id')
+        ->where('question_orders.survey_id',$id)
+        ->get()->toArray();;
+      
+        return view('surveys.detail', [
+            'survey' => $survey,
+            'surveyresponse' => $surveyresponse,
+            'questions' => $question,
+            'questionMul' => $questionMul
+        ]);
     }
 }

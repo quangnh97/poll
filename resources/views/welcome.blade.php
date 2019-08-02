@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #EEEEEE;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -33,11 +33,14 @@
             .position-ref {
                 position: relative;
             }
-
             .top-right {
+                float: left;
+                background-color: #FFFFFF;
+                width:100%;
+                height: 55px;
                 position: absolute;
-                right: 10px;
-                top: 18px;
+                /*right: 20px;*/
+                top: 0px;
             }
 
             .content {
@@ -47,19 +50,33 @@
             .title {
                 font-size: 84px;
             }
+            
 
             .links > a {
-                color: #636b6f;
-                padding: 0 25px;
+                border: 3px solid #80bfff;
+                border-radius: 3px;
+                float: right;
+                margin-right: 25px;
+                margin-top: 10px;
+                width: 80px;
+                height: 20px;
+                background-color: #80bfff;
+                color: green;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                text-align: center;
+                padding-top: 5px;
             }
 
             .m-b-md {
+                float: left;
+                font-size: 150px;
                 margin-bottom: 30px;
+                font-weight: 600;
+                color:#4CAF50;
             }
         </style>
     </head>
@@ -70,15 +87,14 @@
                     @auth
                         <a href="{{ url('/home/' . Auth::user()->username)}}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
+                        <a href="{{ route('login') }}">Login</a>
                     @endauth
                 </div>
             @endif
-
+            <br>
             <div class="content">
                 <div class="title m-b-md">
                     POLLING

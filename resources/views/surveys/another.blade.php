@@ -26,8 +26,7 @@
                             <p class="name-survey">Title: {{$survey->name}}</p>
                             <p class="description-survey">Description: {{$survey->description}}</p>
                             <a href="/surveys/{{$survey->id}}/start">Start this survey</a>
-                            
-                        </div>
+                        </div>    
                     @endforeach
                 </div>
             </div>

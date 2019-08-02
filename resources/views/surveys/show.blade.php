@@ -67,7 +67,7 @@
                     <form action="/questions/{{ $question->id }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-outline-danger btn-block">X</button>
+                        <button class="btn btn-outline-danger btn-block" >X</button>
                     </form>
                 </div>
             </div>

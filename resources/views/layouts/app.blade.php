@@ -26,6 +26,47 @@
             background-color: #ecf0f1;
             color: #192a56;
         }
+        .polling{
+            margin-top: 5px;
+            border: 3px solid  #80bfff;
+            border-radius: 3px;
+            background-color: #80bfff;
+            width: 90px;
+            height: 40px;
+            color: green;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 7px;
+        }
+        .nav-link{
+            float: right;
+            margin-right: 10px;
+            margin-top: 5px;
+            border: 3px solid  #80bfff;
+            border-radius: 3px;
+            background-color: #80bfff;
+            width: 95px;
+            height: 40px;
+            color: green;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 7px;
+        }
+        .one-survey{
+            float: left;
+            margin-right: 25px;
+            background-color:#ffffff;
+            border: 5px solid  blue;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -33,7 +74,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <div class="pt-2">Polling</div> 
+                    <div class="pt-2 polling">Polling</div> 
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -59,8 +100,8 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                <a style="color:green" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ substr(Auth::user()->username,0,6) }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

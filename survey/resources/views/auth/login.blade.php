@@ -8,11 +8,14 @@
         font-size: 20px;
     }
 
+    .content-center {
+        margin-top: 100px;
+    }
 </style>
 @endsection
 
 @section('content')
-<div class="container" style="height:450px;">
+<div class="container" style="height:500px;">
     <div class="row justify-content-center">
         <div class="col-md-8 content-center">
             <div class="card">

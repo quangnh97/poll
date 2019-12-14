@@ -1,83 +1,22 @@
 @extends('layouts.app')
 @section('css')
-
+<link href="{{ asset('css/index.css') }}" rel="stylesheet">
 <style>
-
-    .col-left{
-        border: 1px solid #EDEDED;
-        background: #fff;
-        padding-right: 0px;
+    .one-survey a p {
+        font-size: 16px;
+        color: #000;
     }
 
-    .col-right{
-        padding: 30px !important;
+    .one-survey a:hover {
+        text-decoration: none;
     }
-
-    .header-col-left {
-        height: 80px;
-        padding-top: 32px;
-        padding-bottom: 16px;
-        padding-left: 24px;
-        padding-right: 24px;
-        border-bottom: 1px solid #EDEDED;
-        
-    }
-
-    .bold {
-        color: rgb(38, 38, 39);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-        font-weight: 500;
-    }
-
-    .button-add-survey {
-        border: 1px solid;
-        width: 200px;
-        height:200px;
-        text-align: center;
-        padding: 50px 5px !important;
-        background: #4FB0AE;
-        color: #fff;
-        border-radius: 10px;
-        border: 1px solid #4FB0AE;
-    }
-
-    .one-survey {
-        box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 2px 12px;
-    }
-
-    .c-btn {
-        background-color: transparent;
-        border-color: #fff;
-        color: #898989;
-        border: none;
-    }
-
-    .c-btn:hover {
-        background: #EDEDED;
-        color: #898989;
-
-    }
-
-    .function-box {
-        background: #fff;
-        box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 2px 12px;
-        border-radius: 10px;
-        width: 100px;
-        height: 100px;
-        display: block;
-        padding: 10px;
-    }
-    .delete-survey {
-        color: red;
-    }
-
 </style>
 @endsection
 
 @section('content')
-<div class="">
+<div class="content">
     <div class="row">
-        <div class="col-3 col-left">
+        <div class="col-2 col-left">
             <div class="header-col-left">
                 <span class="bold">Workspaces</span>
                 <div class="btn-header"></div>
@@ -88,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-9 col-right pt-2">
+        <div class="col-10 col-right pt-2">
             <!-- <h1>POLLING - give us your opinion</h1> -->
 
             <div class="your-surveys">
@@ -108,14 +47,16 @@
                 <div class="list-survey">
                     @if(isset($surveys))
                         @foreach ($surveys as $key => $survey)
+                        
                             <div class="one-survey mb-4 p-2" style="border: 1px solid #fff; width: 300px;">
-                                <p class="created-at">Created at: {{$survey->first()->created_at}}</p>
-                                <p class="name-survey">Title: {{$survey->first()->name}}</p>
-                                <p class="description-survey">Description: {{$survey->first()->description}}</p>
-                                {{-- <a href="/surveys/{{$survey->first()->id}}">Setting</a> 
-                                | <a href="/surveys/{{ $survey->first()->id }}/statistical">Statistical</a> 
-                                | <a href="/surveys/{{ $survey->first()->id }}/detail">Detail</a> --}}
-
+                                <a href="/surveys/{{$survey->first()->id}}">
+                                    <p class="created-at">Created at: {{$survey->first()->created_at}}</p>
+                                    <p class="name-survey">Title: {{$survey->first()->name}}</p>
+                                    <p class="description-survey">Description: {{$survey->first()->description}}</p>
+                                    {{-- <a href="/surveys/{{$survey->first()->id}}">Setting</a> 
+                                    | <a href="/surveys/{{ $survey->first()->id }}/statistical">Statistical</a> 
+                                    | <a href="/surveys/{{ $survey->first()->id }}/detail">Detail</a> --}}
+                                </a>
                                 <div style="position: relative;">
                                         <div class="row" style="position: absolute; top: -120px; left: 270px;">
                                         <button type="button" class="btn c-btn" id="c-btn" data-key="{{$key}}">
@@ -128,11 +69,18 @@
                                                 <div>
                                                     <a href="/surveys/{{$survey->first()->id}}">Setting</a>
                                                 </div>
+                                                <div>
+                                                    <a href="/surveys/{{ $survey->first()->id }}/statistical">Statistical</a> 
+                                                </div>
+                                                <div>
+                                                    <a href="/surveys/{{ $survey->first()->id }}/detail">Detail</a> 
+                                                </div>
                                             </div>
                                         </div>
                                 </div>
                                 
                             </div>
+                        
                         @endforeach
                     <form action="/surveys/" id="delete-survey-form" method="post">
                         @csrf
@@ -167,9 +115,14 @@
         }
         const deleteSurveyBtn = document.querySelectorAll('.delete-survey');
         const deleteSurveyForm = document.querySelector("#delete-survey-form");
+
         for (let index = 0; index < deleteSurveyBtn.length; index++) {
+            // bắt sự kiện nhấn nút xóa
             deleteSurveyBtn[index].addEventListener('click', function () {
+                // id của survey can xóa đặt trong attribute data-value
+                // lấy giá trị data-value vào trong biến surveyId
                 let surveyId = this.getAttribute('data-value');
+                // thay đổi action của form
                 deleteSurveyForm.setAttribute("action", `/surveys/${surveyId}`);
                 deleteSurveyForm.submit();
             });

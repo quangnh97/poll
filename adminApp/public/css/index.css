@@ -1,0 +1,71 @@
+.col-left{
+    border: 1px solid #EDEDED;
+    background: #fff;
+    padding-right: 0px;
+}
+
+.col-right{
+    padding: 30px !important;
+}
+
+.header-col-left {
+    height: 80px;
+    padding-top: 32px;
+    padding-bottom: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-bottom: 1px solid #EDEDED;
+    
+}
+
+.bold {
+    color: rgb(38, 38, 39);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 500;
+}
+
+.button-add-survey {
+    border: 1px solid;
+    width: 200px;
+    height:200px;
+    text-align: center;
+    padding: 50px 5px !important;
+    background: #4FB0AE;
+    color: #fff;
+    border-radius: 10px;
+    border: 1px solid #4FB0AE;
+}
+
+.one-survey {
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 2px 12px;
+}
+
+.c-btn {
+    background-color: transparent;
+    border-color: #fff;
+    color: #898989;
+    border: none;
+}
+
+.c-btn:hover {
+    background: #EDEDED;
+    color: #898989;
+
+}
+
+.function-box {
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 2px 12px;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    display: block;
+    padding: 10px;
+}
+.delete-survey {
+    color: red;
+}
+
+.col-left, .col-right {
+    min-height: 500px;
+}

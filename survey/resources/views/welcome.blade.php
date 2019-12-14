@@ -23,7 +23,7 @@
                 <div class="top-right links clearfix">
                     <h1 class="logo-name">Survey-UET</h1>
                     @auth
-                        <a href="{{ url('/home/' . Auth::user()->username)}}">Home</a>
+                        <a href="{{ url('/home/')}}">Home</a>
                     @else
                         @if (Route::has('register'))
                             <a class="sign-up" href="{{ route('register') }}">Sign up</a>

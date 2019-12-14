@@ -16,6 +16,20 @@
         margin-top: 100px;
     }
 
+    body{
+background-image:  url("/assets/images/banner1.jpg");
+background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+padding:0;
+margin:0; 
+font-family: 'Roboto Condensed', sans-serif;
+ font-size: 100%;
+} 
+
 </style>
 @endsection
 

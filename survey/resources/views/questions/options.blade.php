@@ -6,7 +6,7 @@
         margin-left: 500px;
     }
 </style>
-<div class="container">
+<div class="container content">
     <form action="/questions/{{$question_id}}" method="get">
     @csrf
         <div class="row">
@@ -65,7 +65,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>Option D:</td>
                             <td> 
                                 <div>
                                     <input name="d" id="d" type="text" class=" @error('d') is-invalid @enderror" required autocomplete="d"> 

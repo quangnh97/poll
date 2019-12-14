@@ -11,11 +11,25 @@
     .content-center {
         margin-top: 100px;
     }
+    
+    body{
+background-image:  url("/assets/images/banner1.jpg");
+background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+padding:0;
+margin:0; 
+font-family: 'Roboto Condensed', sans-serif;
+ font-size: 100%;
+} 
 </style>
 @endsection
 
 @section('content')
-<div class="container" style="height:500px;">
+<div class="container content header-main" >
     <div class="row justify-content-center">
         <div class="col-md-8 content-center">
             <div class="card">

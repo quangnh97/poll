@@ -26,5 +26,5 @@ Route::get('surveys/{survey}/detail', 'SurveysController@detail');
 Route::resource('surveys', 'SurveysController');
 
 Route::resource('questions', 'QuestionsController');
-
+Route::post('questions/{question}/options', 'QuestionsController@options');
 Route::resource('responses', 'ResponsesController');

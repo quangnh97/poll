@@ -1,19 +1,29 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="{{ asset('css/index.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
-<div class="container">
+<div class=" content">
     <div class="row">
-        <div class="col-3">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfUD35TkfHpgPcH9Ox_xTaNa49f9s-IVZaj2rPjxk0jkxK0ZyA" alt="logo" style="height: 150px">
-        </div>
+            <div class="col-2 col-left">
+                    <div class="header-col-left">
+                        <span class="bold">Workspaces</span>
+                        <div class="btn-header"></div>
+                    </div>
+                    <div class="">
+                        <div class="pr-3">
+                                <a href="/home"><strong>My surveys</strong></a>
+                        </div>
+                        <div class="pr-3">
+                                <a href="/surveys/another"><strong>Another surveys</strong></a>
+                        </div>
+                    </div>
+            </div>
         <div class="col-9 pt-2">
             <h1>POLLING - give us your opinion</h1>
-            <div class="d-flex">
-                <div class="pr-3">
-                    <a href="/home"><strong>My surveys</strong></a>
-                </div>
-                
-            </div>
+
             <div class="your-surveys mt-5">
                 <div class="row">
                     <h3>Another surveys</h3>

@@ -124,6 +124,10 @@
         .a-user-name:hover {
             background: #ECF0F1;
         }
+
+        .content {
+            min-height: 500px;
+        }
     </style>
 </head>
 <body>

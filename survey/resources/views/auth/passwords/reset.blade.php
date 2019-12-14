@@ -9,7 +9,7 @@
 </style>
 @endsection
 @section('content')
-<div class="container" style="height:500px;">
+<div class="container content" style="height:500px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

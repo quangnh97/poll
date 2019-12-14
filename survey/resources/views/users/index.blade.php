@@ -21,10 +21,13 @@
                 <span class="bold">Workspaces</span>
                 <div class="btn-header"></div>
             </div>
-            <div class="d-flex">
+            <div class="">
                 <div class="pr-3">
                       <a href="/surveys/another"><strong>Another surveys</strong></a>
                 </div>
+                <div class="pr-3">
+                    <a href="/system-review"><strong>System Review </strong></a>
+              </div>
             </div>
         </div>
         <div class="col-10 col-right pt-2">

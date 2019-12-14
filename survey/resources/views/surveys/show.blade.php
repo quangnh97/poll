@@ -3,6 +3,7 @@
 @section('css')
 <link href="{{ asset('css/index.css') }}" rel="stylesheet">
     <style>
+
         .detail-survey {
             background: #1B7B57;
             padding: 20px;
@@ -53,9 +54,9 @@
                         </div>
                         <div class="pr-3">
                         <a href="/surveys/create"><strong>Create new survey</strong></a> 
+                        </div>
                     </div>
             </div>
-    </div>
 
     <div class="col-10 pt-2 col-right">
         <form action="/surveys/{{ $survey->id }}" method="post">
@@ -114,7 +115,7 @@
                                         <i class="fa fa-ellipsis-v"></i>
                                     </button>
                                     <div class="function-box box-{{$key}} d-none">
-                                        <div data-value="{{$question->id}}" class="delete-survey">
+                                        <div data-value="{{$question->id}}" class="delete-survey" style="cursor:pointer">
                                             Delete
                                         </div>
                                         <div class="edit-question" data-id="{{ $question->id }}" style="cursor:pointer">
@@ -144,10 +145,6 @@
                         </div> --}}
                     </div>
                 @endforeach
-                <form action="/questions/" id="delete-question-form" method="post">
-                    @csrf
-                    @method("DELETE")
-                </form>
             
                 <div class="button-add-question mb-4 p-2">
                         <a style=" color: #fff; font-size: 20px;" href="/questions/create?survey={{ $survey->id }}">   
@@ -187,15 +184,15 @@
                     e.stopPropagation();
                 });
             }
-            const deleteSurveyBtn = document.querySelectorAll('.delete-survey');
-            const deleteSurveyForm = document.querySelector("#delete-question-form");
-            for (let index = 0; index < deleteSurveyBtn.length; index++) {
-                deleteSurveyBtn[index].addEventListener('click', function () {
-                    let surveyId = this.getAttribute('data-value');
-                    deleteSurveyForm.setAttribute("action", `/questions/${surveyId}`);
-                    deleteSurveyForm.submit();
-                });
-            }
+            // const deleteSurveyBtn = document.querySelectorAll('.delete-survey');
+            // const deleteSurveyForm = document.querySelector("#delete-question-form");
+            // for (let index = 0; index < deleteSurveyBtn.length; index++) {
+            //     deleteSurveyBtn[index].addEventListener('click', function () {
+            //         let surveyId = this.getAttribute('data-value');
+            //         deleteSurveyForm.setAttribute("action", `/questions/${surveyId}`);
+            //         deleteSurveyForm.submit();
+            //     });
+            // }
             document.querySelector("#app").addEventListener('click', function (e) {
                 for (let index = 0; index < customBtn.length; index++) {
                     let functionBox = document.querySelector(`.box-${customBtn[index].getAttribute('data-key')}`);
@@ -248,6 +245,43 @@
         document.querySelector('#close-edit-box').addEventListener('click', function () {
             document.querySelector('#edit-box').style.display = 'none';
         });
+
+    </script>
+</div>
+
+
+<!-- delete -->
+<div id="delete-box" style="position:absolute;width:100%;height:100%;background-color:#a8a8a896;display:none;justify-content:center;align-items:center;left:0px;z-index:20"> 
+    <div style="background-color:#fff;width:400px;height:200px;position:relative">
+        <i class="fa fa-times" id="close-delete-box" aria-hidden="true" style="color: #e3342f;position:absolute;right:4px;top:2px;font-size: x-large;"></i>
+        <div style="background-color: #FAFAFA;color:#000;font-weight:600;padding:5px 15px" id="edit-ietm-title">
+            Delete the question
+        </div>
+        <div id="edit-ietm-content">
+            <form action="/questions/" id="delete-question-form" method="post" style="padding:20px">
+                <h4 class="modal-title" style="text-align: center;">Are you sure?</h4>
+                <button  type="button" class="btn btn-info" id="close-delete-box"  aria-hidden="true" style="margin-left: 60px;margin-top: 20px;">Cancel</button>
+                @csrf
+                @method("DELETE")
+                <button type="submit" class="btn col-4 btn-danger" style="margin-top: 20px;">Delete</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // nut delete
+        let deleteQuestionBtns = document.querySelectorAll('.delete-survey');
+        for (let index = 0; index < deleteQuestionBtns.length; index++) {
+            deleteQuestionBtns[index].addEventListener('click', function () {
+                document.querySelector('#delete-box').style.display = 'flex';
+                let questionId = this.getAttribute('data-value');
+                document.querySelector('#delete-question-form').setAttribute('action',`/questions/${questionId}`)
+            });
+        }
+        document.querySelector('#close-delete-box').addEventListener('click', function () {
+            document.querySelector('#delete-box').style.display = 'none';
+        });
+    
     </script>
 </div>
 @endsection

@@ -98,30 +98,16 @@
             </script>
             {{-- <canvas id="doughnut-chart" width="800" height="450"></canvas> --}}
             {{--  thống kê các loại câu hỏi --}}
-            @foreach ($questions as $question)            
-              @if ($question->type == 3)
-                <div class="">
-                    <p class="mt-2 question-name text-left">Question: {{ $question->content}}</p>
-                </div>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>User name</th>
-                      <th>Answer</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($question->answer as $answer)
-                      <tr>
-                        <td>{{ $answer->username }}</td>
-                        <td>{{ $answer->answer}}</td>
-                      </tr>
-                    @endforeach
-                    
-
-                  </tbody>
-                </table>
-              @else
+            <script>
+              let chosen;
+              let options;
+              let answer;
+            </script>
+            @foreach ($questions as $key => $question)            
+                <script>
+                    chosen = [];
+                    options = [];
+                </script>
                 <div class="row question">
                   <div class="col-lg-5">
                       <p class="mt-2 question-name text-left">Question: {{ $question->content}}</p>
@@ -130,19 +116,21 @@
                   <div class="col-lg-7">
 
                     @if ($question->type == 1)
-                      <div class="col-lg-8"><canvas id="doughnut-chart" ></canvas></div>
+                        <div class="col-lg-8"><canvas id="doughnut-chart-{{$key}}" ></canvas></div>
                         <script>
-                            var soTrue = {{ json_encode($question->answer[1]->chosen) }};
-                            var soFalse = {{ json_encode($question->answer[0]->chosen) }};
-                            new Chart(document.getElementById("doughnut-chart"), {
+                            answer = {!! json_encode($question->answer) !!};
+                            for (let index = 0; index < answer.length; index++) {
+                              chosen.push(answer[index].chosen);
+                            }
+                            new Chart(document.getElementById("doughnut-chart-"+{{$key}}), {
                             type: 'doughnut',
                             data: {
                               labels: ["true", "flase"],
                               datasets: [
                                 {
-                                  label: "Population (millions)",
+                                  label: "",
                                   backgroundColor: ["#3e95cd", "#8e5ea2"],
-                                  data: [soTrue,soFalse]
+                                  data: chosen,
                                 }
                               ]
                             },
@@ -154,48 +142,65 @@
                             }
                         })
                         </script>
-                    @endif
-                
-                    @if ($question->type == 2) 
-                    <canvas id="bar-chart" width="800" height="450"></canvas>
-                    <script>
-                      var answer = <?php echo json_encode($question->answer); ?>;
-                      let options = [];
-                      for (let index = 0; index < answer.length; index++) {
-                        options.push(answer[index].answer);
-                      }
-                      let chosen =[];
-                      for (let index = 0; index < answer.length; index++) {
-                        chosen.push(answer[index].chosen);
-                      }
-                      console.log(answer);
-                      new Chart(document.getElementById("bar-chart"), {
-                          type: 'bar',
-                          data: {
-                            labels: options,
-                            datasets: [
-                              {
-                                label: "Population (millions)",
-                                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                data: chosen
-                              }
-                            ]
-                          },
-                          options: {
-                            legend: { display: false },
-                            title: {
-                              display: true,
-                              text: ''
-                            }
+                    @else
+                        @if ($question->type == 2)
+                        <canvas id="bar-chart-{{$key}}" width="800" height="450"></canvas>
+                        <script>
+                          answer = {!! json_encode($question->answer) !!};
+                          for (let index = 0; index < answer.length; index++) {
+                            options.push(answer[index].answer);
+                            chosen.push(answer[index].chosen);
                           }
-                      });
-                    </script>
+                          // for (let index = 0; index < answer.length; index++) {
+                          //   chosen.push(answer[index].chosen);
+                          // }
+                          new Chart(document.getElementById("bar-chart-"+{{$key}}), {
+                              type: 'bar',
+                              data: {
+                                labels: options,
+                                datasets: [
+                                  {
+                                    label: "",
+                                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#4A0E0E", "#E1E6EC", "#FC3F0D", "#F807C2","#05FBF2"],
+                                    data: chosen,
+                                  }
+                                ]
+                              },
+                              options: {
+                                legend: { display: false },
+                                title: {
+                                  display: true,
+                                  text: ''
+                                }
+                              }
+                          });
+                        </script> 
+                        @else
+                            @if ($question->type == 3)
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>User name</th>
+                                  <th>Answer</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($question->answer as $answer)
+                                  <tr>
+                                    <td>{{ $answer->username }}</td>
+                                    <td>{{ $answer->answer}}</td>
+                                  </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                            @else
+                                
+                            @endif
+                        @endif
                     @endif
-                    
-
                   </div>
                 </div>
-              @endif
+              
             @endforeach
 
         </div>

@@ -76,6 +76,7 @@ class QuestionsController extends Controller
     }
 
     public function options(Request $request, $id) {
+    
         return view('questions.options',[
             'content' =>  $request->content,
             'question_id' => $id
@@ -84,23 +85,23 @@ class QuestionsController extends Controller
 
        public function show(Request $request,$id)
     {   
-        $flag = \App\Option::where([
-            ['question_id', $survey_response_id],
-        ])->first();
-        if(empty($flag)) {
-            \App\Response::create([
-                'survey_response_id' => $survey_response_id,
-                'question_id' => $question_id,
-                'user_id' => $user->id, 
-                'answer' => $answer
-            ]);
-        } else {
-            \App\Response::where([
-                ['survey_response_id', $survey_response_id],
-                ['question_id', $question_id],
-                ['user_id', $user->id]
-            ])->update(['answer' => $answer]);
-        }
+        // $flag = \App\Option::where([
+        //     ['question_id', $survey_response_id],
+        // ])->first();
+        // if(empty($flag)) {
+        //     \App\Response::create([
+        //         'survey_response_id' => $survey_response_id,
+        //         'question_id' => $question_id,
+        //         'user_id' => $user->id, 
+        //         'answer' => $answer
+        //     ]);
+        // } else {
+        //     \App\Response::where([
+        //         ['survey_response_id', $survey_response_id],
+        //         ['question_id', $question_id],
+        //         ['user_id', $user->id]
+        //     ])->update(['answer' => $answer]);
+        // }
 
         \App\Option::create(
             ['content_op' => $request->a,'question_id' => $id]  

@@ -14,8 +14,8 @@
 @endsection
 
 @section('content')
-<div class="content">
-    <div class="row">
+
+    <div class=" content row">
         <div class="col-2 col-left">
             <div class="header-col-left">
                 <span class="bold">Workspaces</span>
@@ -23,10 +23,10 @@
             </div>
             <div class="">
                 <div class="pr-3">
-                      <a href="/surveys/another"><strong>Another surveys</strong></a>
+                      <a href="/surveys/another" ><strong>Another surveys</strong></a>
                 </div>
                 <div class="pr-3">
-                    <a href="/system-review"><strong>System Review </strong></a>
+                    <a href="/system-review" ><strong>System Review </strong></a>
               </div>
             </div>
         </div>
@@ -116,20 +116,20 @@
                 e.stopPropagation();
             });
         }
-        const deleteSurveyBtn = document.querySelectorAll('.delete-survey');
-        const deleteSurveyForm = document.querySelector("#delete-survey-form");
+        // const deleteSurveyBtn = document.querySelectorAll('.delete-survey');
+        // const deleteSurveyForm = document.querySelector("#delete-survey-form");
 
-        for (let index = 0; index < deleteSurveyBtn.length; index++) {
-            // bắt sự kiện nhấn nút xóa
-            deleteSurveyBtn[index].addEventListener('click', function () {
-                // id của survey can xóa đặt trong attribute data-value
-                // lấy giá trị data-value vào trong biến surveyId
-                let surveyId = this.getAttribute('data-value');
-                // thay đổi action của form
-                deleteSurveyForm.setAttribute("action", `/surveys/${surveyId}`);
-                deleteSurveyForm.submit();
-            });
-        }
+        // for (let index = 0; index < deleteSurveyBtn.length; index++) {
+        //     // bắt sự kiện nhấn nút xóa
+        //     deleteSurveyBtn[index].addEventListener('click', function () {
+        //         // id của survey can xóa đặt trong attribute data-value
+        //         // lấy giá trị data-value vào trong biến surveyId
+        //         let surveyId = this.getAttribute('data-value');
+        //         // thay đổi action của form
+        //         deleteSurveyForm.setAttribute("action", `/surveys/${surveyId}`);
+        //         deleteSurveyForm.submit();
+        //     });
+        // }
         document.querySelector("#app").addEventListener('click', function (e) {
             for (let index = 0; index < customBtn.length; index++) {
                 let functionBox = document.querySelector(`.box-${customBtn[index].getAttribute('data-key')}`);
@@ -140,5 +140,47 @@
             }
         });
     </script>
+
+<!-- delete -->
+<div id="delete-box" style="position:absolute;width:100%;height:100%;background-color:#a8a8a896;display:none;justify-content:center;align-items:center;left:0px;z-index:20"> 
+    <div style="background-color:#fff;width:400px;height:200px;position:relative">
+        <i class="fa fa-times close-delete-box" aria-hidden="true" style="color: #e3342f;position:absolute;right:4px;top:2px;font-size: x-large;"></i>
+        <div style="background-color: #FAFAFA;color:#000;font-weight:600;padding:5px 15px" id="edit-ietm-title">
+            Delete the survey
+        </div>
+        <div id="edit-ietm-content">
+            <form action="/surveys/" id="delete-question-form" method="post" style="padding:20px">
+                <h4 class="modal-title" style="text-align: center;">Are you sure?</h4>
+                <button  type="button" class="btn btn-info close-delete-box"  aria-hidden="true" style="margin-left: 60px;margin-top: 20px;">Cancel</button>
+                @csrf
+                @method("DELETE")
+                <button type="submit" class="btn col-4 btn-danger" style="margin-top: 20px;">Delete</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // nut delete
+        let deleteQuestionBtns = document.querySelectorAll('.delete-survey');
+        for (let index = 0; index < deleteQuestionBtns.length; index++) {
+            deleteQuestionBtns[index].addEventListener('click', function () {
+                document.querySelector('#delete-box').style.display = 'flex';
+                let surveyId = this.getAttribute('data-value');
+                document.querySelector('#delete-question-form').setAttribute('action',`/surveys/${surveyId}`)
+            });
+        }
+        
+        let closeDelBoxs = document.querySelectorAll('.close-delete-box');
+        for (let index = 0; index < closeDelBoxs.length; index++) {
+            closeDelBoxs[index].addEventListener('click', function () {
+                document.querySelector('#delete-box').style.display = 'none';
+            });
+        }
+        
+    
+    </script>
 </div>
+
+
+
 @endsection

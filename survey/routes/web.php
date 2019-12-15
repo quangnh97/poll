@@ -32,4 +32,5 @@ Route::group(['prefix' => 'option'] , function() {
 Route::post('questions/{question}/options', 'QuestionsController@options');
 Route::resource('responses', 'ResponsesController');
 
-Route::get('system-review', 'ReviewController@store');
+Route::get('system-review', 'ReviewController@index');
+Route::get('system-review-create', 'ReviewController@store');

@@ -162,6 +162,9 @@ border-radius: 4px;
             </div>
             <div class="">
                 <div class="pr-3">
+                  <a href="/home"><strong>My surveys</strong></a>
+                </div>
+                <div class="pr-3">
                       <a href="/surveys/another"><strong>Another surveys</strong></a>
                 </div>
                 <div class="pr-3">
@@ -181,7 +184,7 @@ border-radius: 4px;
               <div class='rating-stars text-center'>
                   
                 <ul id='stars'>
-                    <li class='star'>
+                    <li class=''>
                         <span>Rating:</span>
                       </li>
                   <li class='star' title='Poor' data-value='1'>
@@ -209,14 +212,28 @@ border-radius: 4px;
                 <div class='clearfix'></div>
               </div>
             </section>
-            <form action="system-review" method="get">
+            <form action="system-review-create" method="get">
                 @csrf
-                    <input  name="rating" type="hidden" value="">
+                    <input  name="rating" id="rating" type="hidden" value="">
                     <textarea name="message" rows="3" cols="100" placeholder="Write a review..." style="margin-left: 200px;"></textarea>
                     <button class="btn btn-info btn-block col-3" style="margin-left: 420px;">Submit</button>
-            </form>   
+            </form>
+            
+            <p>KHÁCH HÀNG NHẬN XÉT</p>
+            <table class="table" style="background: #fff;width: 100%;">
+            @foreach ($reviews as $review)
+                  <tr>
+                    <td rowspan="2" style="width: 20%;padding-left: 20px;">{{$review->username}}</td>
+                    <td>{{$review->evaluate}} <i class='fa fa-star fa-fw'></i></td>
+                  </tr>
+                  <tr>
+                    <td>{{$review->comment}}</td>
+                  </tr>
+            @endforeach
+          </table>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -261,6 +278,7 @@ $(document).ready(function(){
     var msg = "";
     if (ratingValue > 1) {
         msg = "Thanks! You rated this " + ratingValue + " stars.";
+        $('#rating').val(ratingValue);
     }
     else {
         msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";

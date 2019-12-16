@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('css')
 <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+<link href="{{ asset('css/modal.css') }}" rel="stylesheet">
 <style>
     .one-survey a p {
         font-size: 16px;
@@ -27,7 +28,8 @@
                 </div>
                 <div class="pr-3">
                     <a href="/system-review" ><strong>System Review </strong></a>
-              </div>
+                </div>
+
             </div>
         </div>
         <div class="col-10 col-right pt-2">
@@ -142,7 +144,7 @@
     </script>
 
 <!-- delete -->
-<div id="delete-box" style="position:absolute;width:100%;height:100%;background-color:#a8a8a896;display:none;justify-content:center;align-items:center;left:0px;z-index:20"> 
+<div id="delete-box" class="modal-box" > 
     <div style="background-color:#fff;width:400px;height:200px;position:relative">
         <i class="fa fa-times close-delete-box" aria-hidden="true" style="color: #e3342f;position:absolute;right:4px;top:2px;font-size: x-large;"></i>
         <div style="background-color: #FAFAFA;color:#000;font-weight:600;padding:5px 15px" id="edit-ietm-title">

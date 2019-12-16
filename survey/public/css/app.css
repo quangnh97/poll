@@ -64,6 +64,9 @@ section {
   display: block;
 }
 
+.content {
+  min-height: 500px;
+}
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;

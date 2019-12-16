@@ -14,15 +14,14 @@
                     </div>
                     <div class="">
                         <div class="pr-3">
-                                <a href="/home"><strong>My surveys</strong></a>
-                        </div>
+                            <a href="/home"><strong>My surveys</strong></a>
+                        </div> 
                         <div class="pr-3">
                                 <a href="/surveys/another"><strong>Another surveys</strong></a>
                         </div>
                     </div>
             </div>
         <div class="col-9 pt-2">
-            <h1>POLLING - give us your opinion</h1>
 
             <div class="your-surveys mt-5">
                 <div class="row">

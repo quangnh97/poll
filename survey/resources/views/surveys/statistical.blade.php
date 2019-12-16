@@ -58,16 +58,24 @@
                     <div class="btn-header"></div>
                 </div>
                 <div class="">
-                    <div class="pr-3">
-                        <a href="/home"><strong>My surveys</strong></a>
-                    </div>    
-                    <div class="pr-3">
-                      <a href="/surveys/another"><strong>Another surveys</strong></a>
-                    </div>
-                    <div class="pr-3">
-                      <a href="/surveys/create"><strong>Create new survey</strong></a> 
-                    </div>
-                </div>
+                  <div class="pr-3">
+                      <a href="/home"><strong>My surveys</strong></a>
+                  </div>
+                  <div class="pr-3">
+                        <a href="/surveys/another" ><strong>Another surveys</strong></a>
+                  </div>
+                  <div class="pr-3">
+                      <a href="/surveys-management" ><strong>Survey management </strong></a>
+                  </div>
+                  <div class="pr-3">
+                      <a href="/acount-management" ><strong>Account management </strong></a>
+                  </div>
+                  <div class="pr-3">
+                      <a href="/system-review" ><strong>Review management</strong></a>
+                  </div>
+  
+                  
+              </div>
         </div>
 
         <div class="col-10 pt-2 col-right">
@@ -143,7 +151,7 @@
                         })
                         </script>
                     @else
-                        @if ($question->type == 2)
+                        @if ($question->type == 4)
                         <canvas id="bar-chart-{{$key}}" width="800" height="450"></canvas>
                         <script>
                           answer = {!! json_encode($question->answer) !!};
@@ -176,7 +184,7 @@
                           });
                         </script> 
                         @else
-                            @if ($question->type == 3)
+                            @if ($question->type == 3 || $question->type == 5)
                             <table class="table table-striped">
                               <thead>
                                 <tr>
@@ -194,7 +202,33 @@
                               </tbody>
                             </table>
                             @else
-                                
+                               @if ($question->type == 2)
+                               <canvas id="pie-chart-{{$key}}" width="800" height="450"></canvas>
+                               <script>
+                                 answer = {!! json_encode($question->answer) !!};
+                                  for (let index = 0; index < answer.length; index++) {
+                                    options.push(answer[index].answer);
+                                    chosen.push(answer[index].chosen);
+                                  }
+                                 new Chart(document.getElementById("pie-chart-"+{{$key}}), {
+                                   type: 'pie',
+                                   data: {
+                                     labels: options,
+                                     datasets: [{
+                                       label: "",
+                                       backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#4A0E0E", "#E1E6EC", "#FC3F0D", "#F807C2","#05FBF2"],
+                                       data: chosen,
+                                     }]
+                                   },
+                                   options: {
+                                     title: {
+                                       display: true,
+                                       text: ''
+                                     }
+                                   }
+                               });
+                               </script>
+                               @endif 
                             @endif
                         @endif
                     @endif

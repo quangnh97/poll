@@ -12,13 +12,21 @@
         <div class="">
             <div class="pr-3">
                 <a href="/home"><strong>My surveys</strong></a>
-            </div>    
-            <div class="pr-3">
-            <a href="/surveys/another"><strong>Another surveys</strong></a>
             </div>
             <div class="pr-3">
-            <a href="/surveys/create"><strong>Create new survey</strong></a> 
+                  <a href="/surveys/another" ><strong>Another surveys</strong></a>
             </div>
+            <div class="pr-3">
+                <a href="/surveys-management" ><strong>Survey management </strong></a>
+            </div>
+            <div class="pr-3">
+                <a href="/acount-management" ><strong>Account management </strong></a>
+            </div>
+            <div class="pr-3">
+                <a href="/system-review" ><strong>Review management</strong></a>
+            </div>
+
+            
         </div>
     </div>
     <div class="col-10 pt-2 col-right ml-0 mr-0 justify-content-center">
@@ -52,6 +60,8 @@
                                 <option value="1">1 - True || False</option>
                                 <option value="2">2 - Multichoice</option>
                                 <option value="3">3 - Comment</option>
+                                <option value="4">4 - Rating</option>
+                                <option value="5">5 - Date</option>
                             </select>
                         </div>
                     </div>

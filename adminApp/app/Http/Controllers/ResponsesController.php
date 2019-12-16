@@ -14,7 +14,7 @@ class ResponsesController extends Controller
             return \redirect('/');
         }
         $requestParams = \request()->all();
-
+        
         // câu trả lời của câu hỏi mulChoice
         $id_mul_answers = explode('_',$requestParams["q_as"]);
         array_splice($id_mul_answers, 0, 1);
@@ -40,14 +40,15 @@ class ResponsesController extends Controller
                 $answers[$key] = $value;
             }
         }
-        //dd( $answers);
+       // dd( $answers);
         $survey_response_id = DB::table('survey_responses')->latest('updated_at')->first()->id;
         foreach ($answers as $question_id => $answer) {
             $flag = \App\Response::where([
                 ['survey_response_id', $survey_response_id],
                 ['question_id', $question_id],
                 ['user_id', $user->id]
-            ])->first();
+            ]);
+            //dd($flag);
             if(empty($flag)) {
                 \App\Response::create([
                     'survey_response_id' => $survey_response_id,

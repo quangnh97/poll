@@ -24,6 +24,27 @@
     text-align: center;
     padding-bottom: 20px;
   }
+  .question {
+    margin-bottom: 30px;
+  }
+
+  .question-name {
+    position: relative;
+    font-size: 1.7em;
+    font-weight: 400;
+    max-width: 700px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .survey_detail {
+    background: #1B7B57;
+    padding: 20px;
+    margin-bottom: 10px;
+    font-size: 1.7em;
+    font-weight: 400;
+    color: #fff;
+  }
 
 </style>
 @endsection
@@ -36,20 +57,33 @@
                     <span class="bold">Workspaces</span>
                     <div class="btn-header"></div>
                 </div>
-                <div class="d-flex">
-                    <div class="pr-3">
-                            <a href="/surveys/another"><strong>Another surveys</strong></a>
-                    </div>
-                </div>
-            </div>
+                <div class="">
+                  <div class="pr-3">
+                      <a href="/home"><strong>My surveys</strong></a>
+                  </div>
+                  <div class="pr-3">
+                        <a href="/surveys/another" ><strong>Another surveys</strong></a>
+                  </div>
+                  <div class="pr-3">
+                      <a href="/surveys-management" ><strong>Survey management </strong></a>
+                  </div>
+                  <div class="pr-3">
+                      <a href="/acount-management" ><strong>Account management </strong></a>
+                  </div>
+                  <div class="pr-3">
+                      <a href="/system-review" ><strong>Review management</strong></a>
+                  </div>
+  
+                  
+              </div>
+        </div>
 
         <div class="col-10 pt-2 col-right">
-            <h1>POLLING - give us your opinion</h1>
-            <div class="d-flex">
-                <div class="pr-3">
-                    <a href="/surveys/create"><strong>Create new survey</strong></a> | <a href="/surveys/another"><strong>Another surveys</strong></a>
+            <div class="col-lg-12 col-xs-12">
+                <div class="survey_detail ">
+                    <p class="">Survey name:   <span>{{$survey->name}}</span> </p>
+                    <p class="">Description: <span>{{$survey->description }}</span></p>
                 </div>
-                
             </div>
             <div class="col-lg-12 col-xs-12">
                 <div class="count-people">
@@ -72,51 +106,136 @@
             </script>
             {{-- <canvas id="doughnut-chart" width="800" height="450"></canvas> --}}
             {{--  thống kê các loại câu hỏi --}}
-            @foreach ($questions as $question)
-            <tr>
-                <td class="pl-5">
-                    <div>
-                        <p class="mt-2 text-primary text-left">Question: {{ $question->content}}</p>
-                    </div>
-                </td>
-                <td class="pr-5" style="padding-top: 20px;">
+            <script>
+              let chosen;
+              let options;
+              let answer;
+            </script>
+            @foreach ($questions as $key => $question)            
+                <script>
+                    chosen = [];
+                    options = [];
+                </script>
+                <div class="row question">
+                  <div class="col-lg-5">
+                      <p class="mt-2 question-name text-left">Question: {{ $question->content}}</p>
+                  </div>
+    
+                  <div class="col-lg-7">
+
                     @if ($question->type == 1)
-                      <canvas id="doughnut-chart" width="300" height="200"></canvas>
-                          <script>
-                              new Chart(document.getElementById("doughnut-chart"), {
-                              type: 'doughnut',
+                        <div class="col-lg-8"><canvas id="doughnut-chart-{{$key}}" ></canvas></div>
+                        <script>
+                            answer = {!! json_encode($question->answer) !!};
+                            for (let index = 0; index < answer.length; index++) {
+                              chosen.push(answer[index].chosen);
+                            }
+                            new Chart(document.getElementById("doughnut-chart-"+{{$key}}), {
+                            type: 'doughnut',
+                            data: {
+                              labels: ["true", "flase"],
+                              datasets: [
+                                {
+                                  label: "",
+                                  backgroundColor: ["#3e95cd", "#8e5ea2"],
+                                  data: chosen,
+                                }
+                              ]
+                            },
+                            options: {
+                              title: {
+                                display: true,
+                                text: ''
+                              }
+                            }
+                        })
+                        </script>
+                    @else
+                        @if ($question->type == 4)
+                        <canvas id="bar-chart-{{$key}}" width="800" height="450"></canvas>
+                        <script>
+                          answer = {!! json_encode($question->answer) !!};
+                          for (let index = 0; index < answer.length; index++) {
+                            options.push(answer[index].answer);
+                            chosen.push(answer[index].chosen);
+                          }
+                          // for (let index = 0; index < answer.length; index++) {
+                          //   chosen.push(answer[index].chosen);
+                          // }
+                          new Chart(document.getElementById("bar-chart-"+{{$key}}), {
+                              type: 'bar',
                               data: {
-                                labels: ["true", "flase"],
+                                labels: options,
                                 datasets: [
                                   {
-                                    label: "Population (millions)",
-                                    backgroundColor: ["#3e95cd", "#8e5ea2"],
-                                    data: [{{$number_of_participants}},4]
+                                    label: "",
+                                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#4A0E0E", "#E1E6EC", "#FC3F0D", "#F807C2","#05FBF2"],
+                                    data: chosen,
                                   }
                                 ]
                               },
                               options: {
+                                legend: { display: false },
                                 title: {
                                   display: true,
                                   text: ''
                                 }
                               }
-                          })
-                          </script>
+                          });
+                        </script> 
+                        @else
+                            @if ($question->type == 3 || $question->type == 5)
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>User name</th>
+                                  <th>Answer</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($question->answer as $answer)
+                                  <tr>
+                                    <td>{{ $answer->username }}</td>
+                                    <td>{{ $answer->answer}}</td>
+                                  </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                            @else
+                               @if ($question->type == 2)
+                               <canvas id="pie-chart-{{$key}}" width="800" height="450"></canvas>
+                               <script>
+                                 answer = {!! json_encode($question->answer) !!};
+                                  for (let index = 0; index < answer.length; index++) {
+                                    options.push(answer[index].answer);
+                                    chosen.push(answer[index].chosen);
+                                  }
+                                 new Chart(document.getElementById("pie-chart-"+{{$key}}), {
+                                   type: 'pie',
+                                   data: {
+                                     labels: options,
+                                     datasets: [{
+                                       label: "",
+                                       backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#4A0E0E", "#E1E6EC", "#FC3F0D", "#F807C2","#05FBF2"],
+                                       data: chosen,
+                                     }]
+                                   },
+                                   options: {
+                                     title: {
+                                       display: true,
+                                       text: ''
+                                     }
+                                   }
+                               });
+                               </script>
+                               @endif 
+                            @endif
+                        @endif
                     @endif
-                    
-                    @if ($question->type == 2) 
-                          
-                    @endif
-                    
-                    @if ($question->type == 3)
-                        <input required class="border-primary form-control" type="text" name="{{ $question->id }}">
-                    @endif
-                    
-
-                </td>
-            </tr>
-          @endforeach
+                  </div>
+                </div>
+              
+            @endforeach
 
         </div>
     </div>

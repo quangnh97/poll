@@ -8,15 +8,29 @@
 
 <div class="content">
         <div class="row">
-            <div class="col-3 col-left">
+            <div class="col-2 col-left">
                     <div class="header-col-left">
                         <span class="bold">Workspaces</span>
                         <div class="btn-header"></div>
                     </div>
-                    <div class="d-flex">
+                    <div class="">
                         <div class="pr-3">
-                                <a href="/surveys/another"><strong>Another surveys</strong></a>
+                            <a href="/home"><strong>My surveys</strong></a>
                         </div>
+                        <div class="pr-3">
+                              <a href="/surveys/another" ><strong>Another surveys</strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/surveys-management" ><strong>Survey management </strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/acount-management" ><strong>Account management </strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/system-review" ><strong>Review management</strong></a>
+                        </div>
+        
+                        
                     </div>
                 </div>
     

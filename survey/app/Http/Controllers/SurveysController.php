@@ -146,7 +146,7 @@ class SurveysController extends Controller
         // dd($statisticInfos);
         // số người tham gia
         $number_of_participants = \App\SurveyResponse::where('survey_id', $id)->count();
-        
+        $number_of_participants =  $number_of_participants +1;
         // các câu hỏi trong survey
         $questions = DB::table('questions')
         ->join('question_orders', 'questions.id', '=', 'question_orders.question_id')
@@ -183,7 +183,7 @@ class SurveysController extends Controller
 
         }
 
-      //dd($questions);
+      dd($questions);
        
         // $surveyarray = array($survey);
         // $responsearray = array();

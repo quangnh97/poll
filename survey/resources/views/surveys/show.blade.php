@@ -2,6 +2,7 @@
 
 @section('css')
 <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+<link href="{{ asset('css/modal.css') }}" rel="stylesheet">
     <style>
 
         .detail-survey {
@@ -48,13 +49,21 @@
                     <div class="">
                         <div class="pr-3">
                             <a href="/home"><strong>My surveys</strong></a>
-                        </div>    
-                        <div class="pr-3">
-                        <a href="/surveys/another"><strong>Another surveys</strong></a>
                         </div>
                         <div class="pr-3">
-                        <a href="/surveys/create"><strong>Create new survey</strong></a> 
+                              <a href="/surveys/another" ><strong>Another surveys</strong></a>
                         </div>
+                        <div class="pr-3">
+                            <a href="/surveys-management" ><strong>Survey management </strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/acount-management" ><strong>Account management </strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/system-review" ><strong>Review management</strong></a>
+                        </div>
+        
+                        
                     </div>
             </div>
 
@@ -106,7 +115,10 @@
                         Content: <span class="alert-heading qc-{{$question->id}}">{{ $question->content }}</span>
                         <p class="mb-0">Type: <?php if($question->type == 1 ) echo "True-False";  
                             else if($question->type == 2) echo "Multichoice";
-                                else echo "Comment"; ?>
+                                else if($question->type == 3) echo "Comment";
+                                else if($question->type == 4) echo "Rating";
+                                else echo "Date";
+                                ?>
                        </p>
 
                         <div style="position: relative;">
@@ -134,6 +146,7 @@
                                 <button class="btn btn-block btn-primary ">Create options</button>
                             </form>
                         @endif 
+                        
 
 
                         {{-- <div class="mt-2">
@@ -204,7 +217,7 @@
             });
         </script>
 
-<div id="edit-box" style="position:absolute;width:100%;height:100%;background-color:#a8a8a896;display:none;justify-content:center;align-items:center;left:0px;z-index:20">
+<div id="edit-box" class="modal-box">
     <div style="background-color:#fff;width:400px;height:400px;position:relative">
         <i class="fa fa-times" id="close-edit-box" aria-hidden="true" style="color:#000;position:absolute;right:4px;top:2px;font-size: x-large;"></i>
         <div style="background-color: #FAFAFA;color:#000;font-weight:600;padding:5px 15px" id="edit-ietm-title">
@@ -238,7 +251,7 @@
                 document.querySelector('#form-edit-question').setAttribute('action', `/questions/${this.getAttribute('data-id')}`);
                 // document.querySelector('#e-question-id').value= this.getAttribute('data-id');
                 let contentPlaceClass = '.qc-'+this.getAttribute('data-id');
-                console.log(contentPlaceClass);
+                console.log( document.querySelector(contentPlaceClass) );
                 document.querySelector('#e-question-content').value=document.querySelector(contentPlaceClass).innerText;
             });
         }
@@ -251,7 +264,7 @@
 
 
 <!-- delete -->
-<div id="delete-box" style="position:absolute;width:100%;height:100%;background-color:#a8a8a896;display:none;justify-content:center;align-items:center;left:0px;z-index:20"> 
+<div id="delete-box" class="modal-box"> 
     <div style="background-color:#fff;width:400px;height:200px;position:relative">
         <i class="fa fa-times close-delete-box" aria-hidden="true" style="color: #e3342f;position:absolute;right:4px;top:2px;font-size: x-large;"></i>
         <div style="background-color: #FAFAFA;color:#000;font-weight:600;padding:5px 15px" id="edit-ietm-title">

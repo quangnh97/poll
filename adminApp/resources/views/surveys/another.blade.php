@@ -12,20 +12,28 @@
                         <span class="bold">Workspaces</span>
                         <div class="btn-header"></div>
                     </div>
-                    <div class="d-flex">
+                    <div class="">
                         <div class="pr-3">
-                                <a href="/surveys/another"><strong>Another surveys</strong></a>
+                            <a href="/home"><strong>My surveys</strong></a>
                         </div>
+                        <div class="pr-3">
+                              <a href="/surveys/another" ><strong>Another surveys</strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/surveys-management" ><strong>Survey management </strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/acount-management" ><strong>Account management </strong></a>
+                        </div>
+                        <div class="pr-3">
+                            <a href="/system-review" ><strong>Review management</strong></a>
+                        </div>
+        
+                        
                     </div>
             </div>
         <div class="col-9 pt-2">
-            <h1>POLLING - give us your opinion</h1>
-            <div class="d-flex">
-                <div class="pr-3">
-                    <a href="/home"><strong>My surveys</strong></a>
-                </div>
-                
-            </div>
+
             <div class="your-surveys mt-5">
                 <div class="row">
                     <h3>Another surveys</h3>

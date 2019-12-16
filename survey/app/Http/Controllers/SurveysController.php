@@ -159,7 +159,7 @@ class SurveysController extends Controller
             // các trả lời trong survey
              $id_question = $question->id;
 
-            if($question->type == 3 ){
+            if($question->type == 3 || $question->type == 5){
                 $answer = DB::table('questions')
                 ->join('question_orders', 'questions.id', '=', 'question_orders.question_id')
                 ->join('responses', 'questions.id', '=', 'responses.question_id')
@@ -179,11 +179,9 @@ class SurveysController extends Controller
                 ->get();
             }
             $question->answer =$answer;
-
-
         }
 
-      dd($questions);
+        // dd($questions);
        
         // $surveyarray = array($survey);
         // $responsearray = array();

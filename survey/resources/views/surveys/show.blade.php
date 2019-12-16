@@ -53,16 +53,6 @@
                         <div class="pr-3">
                               <a href="/surveys/another" ><strong>Another surveys</strong></a>
                         </div>
-                        <div class="pr-3">
-                            <a href="/surveys-management" ><strong>Survey management </strong></a>
-                        </div>
-                        <div class="pr-3">
-                            <a href="/acount-management" ><strong>Account management </strong></a>
-                        </div>
-                        <div class="pr-3">
-                            <a href="/system-review" ><strong>Review management</strong></a>
-                        </div>
-        
                         
                     </div>
             </div>
